@@ -1,0 +1,29 @@
+schema: # Comma separated column names - ignored if not specified
+  ordinal_cols: 
+  date_columns: 
+
+
+data:
+  input_path: data/credit-card-default.csv
+  train_split_path: artifacts/data/train_data.csv
+  test_split_path: artifacts/data/test_data.csv
+  target_column: Class
+  transformer_path: artifacts/data/data_transformer.pkl
+  
+
+model:
+  model_task: classification # regression/classification
+  randomize_grid_search: False # Use Randomized Grid Search when True
+  gsv_max_data_size: 20000 # Max data to run GSV on
+  trained_models_path: artifacts/models/a.trained_models/
+  final_model_path: artifacts/models/b.final_model/model.pkl
+  selected_model: RandomForestClassifier # value if when you have finalized your model and want to fine tune just that; else leave blank
+
+
+evaluation:
+  is_binary: True # True if binary classification/Ignored for regression
+  pos_label: 1 # One of class labels - only needed for binary classification
+  eval_metrics: roc_auc_score, precision_score, recall_score, accuracy_score
+  eval_metric_selection: accuracy_score # Can only provide one metric here as best model selection criteria
+  eval_scores_path: artifacts/models/c.evaluation_score/scores.json
+  mlflow_uri: # Uses local if not specified
