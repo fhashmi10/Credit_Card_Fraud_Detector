@@ -10,7 +10,7 @@ __pycache__/
 .Python
 artifacts/
 catboost_info/
-data/
+/data/
 logs/
 mlruns/
 build/
